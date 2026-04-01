@@ -1,4 +1,4 @@
-# Práctica 3: Monitoreo IoT con InfluxDB, Prometheus y Grafana  
+# Monitoreo IoT con InfluxDB, Prometheus y Grafana  
 
 Este repositorio documenta el despliegue de un stack completo de monitoreo para un caso de uso de **Internet de las Cosas (IoT)**.  
 El proyecto integra:  
