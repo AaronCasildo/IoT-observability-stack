@@ -28,16 +28,16 @@ La documentación se organiza en carpetas para facilitar la lectura y seguimient
 
 ---
 
-## Desarrollo de la Práctica  
+## Desarrollo  
 
-### 1. Configuración de Tailscale (20%)  
+### 1. Configuración de Tailscale  
 Se configuró una **VPN con Tailscale** para interconectar de forma segura la instancia EC2 y los dispositivos personales.  
 Esto eliminó la necesidad de exponer puertos públicos, aumentando la seguridad.  
 <img width="882" height="494" alt="image" src="https://github.com/user-attachments/assets/ff5ec348-cdf8-4538-b832-cfe797ad3a73" />
 
 ---
 
-### 2. Instalación de InfluxDB (15%)  
+### 2. Instalación de InfluxDB  
 - Instalación desde repositorio oficial.  
 - Creación de **organización**, **bucket** y **token** de autenticación.  
 
@@ -45,7 +45,7 @@ Esto eliminó la necesidad de exponer puertos públicos, aumentando la seguridad
 
 ---
 
-### 3. Instalación de Prometheus + Node Exporter (15%)  
+### 3. Instalación de Prometheus + Node Exporter  
 - Servicios configurados con **systemd**.  
 - Archivo `prometheus.yml` actualizado para monitoreo de endpoints.  
 
@@ -53,7 +53,7 @@ Esto eliminó la necesidad de exponer puertos públicos, aumentando la seguridad
 
 ---
 
-### 4. Instalación de Grafana (15%)  
+### 4. Instalación de Grafana  
 - Instalación y habilitación del servicio.  
 - Configuración de **data sources**: InfluxDB y Prometheus.  
 
@@ -61,9 +61,8 @@ Esto eliminó la necesidad de exponer puertos públicos, aumentando la seguridad
 
 ---
 
-### 5. Simulación de Datos IoT (15%)  
-Se desarrolló un script en **Python** que simula un sensor de **temperatura y humedad**, enviando datos a InfluxDB cada 5 segundos.  
-
+### 5. Simulación de Datos IoT  
+Se desarrolló un script en **Python** que simula un sensor de **temperatura y humedad**, enviando datos a InfluxDB cada segundo.  
 ```python
 from datetime import datetime
 import random
@@ -71,11 +70,7 @@ import time
 from influxdb_client import InfluxDBClient, Point, WritePrecision
 from influxdb_client.client.write_api import SYNCHRONOUS
 
-# Casildo Rubalcava Aaron    22212222
-# Sistemas programables
-# Programa que envía datos de temperatura y humedad a una bucket de influxDB
-
-# --- CONFIGURACIÓN REAL ---
+# --- CONFIGURACIÓN ---
 token = "###########################################################################################"
 org = "SistemasProgramables"
 bucket = "datos"
@@ -102,14 +97,14 @@ try:
         write_api.write(bucket=bucket, record=punto)
         print(f"Enviado: temperatura={temperatura}°C, humedad={humedad}%")
         time.sleep(1)
-        #Envío de mensaje a cada segundo
 
 except KeyboardInterrupt:
     print("\n--- Simulador detenido ---")
 except Exception as e:
     print(f"Error: {e}")
 ```
-### 6. Dashboard en Grafana (15%)  
+
+### 6. Dashboard en Grafana  
 Se creó un dashboard unificado que integra:  
 
 - **Métricas IoT** desde InfluxDB.  
@@ -117,12 +112,12 @@ Se creó un dashboard unificado que integra:
 
 <img width="1920" height="766" alt="image" src="https://github.com/user-attachments/assets/3f552448-1152-4e5e-ab8f-b9ed93469339" />
 
-Resultado final disponible en: 
+Demo disponible en:  
 https://www.loom.com/share/f94ea96f614f4f27ba8b4551e6919132?sid=2fa52b00-1ebd-4673-b69a-e5b9d80e9078
 
 ---
 
-### 7. Informe Escrito y Reflexiones (5%)  
+### 7. Notas y Reflexiones  
 
 **Importancia de Tailscale en este escenario:**  
 Tailscale permite crear una VPN de malla entre dispositivos y el servidor EC2, evitando exponer puertos públicos como **3000 (Grafana)** o **9090 (Prometheus)**.  
@@ -135,11 +130,6 @@ Esto reduce la superficie de ataque y garantiza acceso seguro solo a dispositivo
 
 ---
 
-## Autor y Agradecimientos  
+## Autor  
 
-- **Autor:** Aaron Casildo Rubalcava  
-- **Institución:** TECNM / Instituto Tecnológico de Tijuana  
-- **Materia:** Sistemas Programables  
-- **Año:** 2025  
-
-Documento elaborado con la asistencia del modelo de lenguaje **Claude Sonnet 3.7** para la redacción y estructuración de la documentación.
+**Aaron Casildo Rubalcava**
